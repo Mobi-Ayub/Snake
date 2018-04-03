@@ -44,7 +44,7 @@ namespace Snake
             if (score != 0) {
             GameTimer.Enabled = false;
             display = "Score : " + score.ToString();
-            name = Interaction.InputBox(display, "High Scores", "Name", -1, -1);
+            name = Interaction.InputBox(display, "High Score", "Name", -1, -1);
             String line = name + "          " + score.ToString() + Environment.NewLine;
 			System.IO.File.AppendAllText(@"C:\Project\Snake\Score.txt", line);
 			GameTimer.Enabled = true;

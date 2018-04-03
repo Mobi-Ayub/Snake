@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.VisualBasic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -38,17 +37,8 @@ namespace Snake
 			GameTimer.Enabled = !GameTimer.Enabled;
 		}
 
-        public void ResetGame()
-        {
-            String name, display;
-            if (score != 0) {
-            GameTimer.Enabled = false;
-            display = "Score : " + score.ToString();
-            name = Interaction.InputBox(display, "High Score", "Name", -1, -1);
-            String line = name + "          " + score.ToString() + Environment.NewLine;
-            System.IO.File.AppendAllText(@"C:\Project\Snake\Score.txt", line);
-			GameTimer.Enabled = true;
-        }
+		public void ResetGame()
+		{
 			Player1 = new SnakePlayer(this);
 			FoodMngr = new FoodManager(GameCanvas.Width, GameCanvas.Height);
 			FoodMngr.AddRandomFood(10);
@@ -167,8 +157,7 @@ namespace Snake
 			MessageBox.Show("Poor Baby");
 			FoodMngr.AddRandomFoodRed(5);
 			GameTimer.Interval = 200;
-			GameCanvas.Invalidate();
-		}
+			GameCanvas.Invalidate();		}
 
 		private void HardBtn_Click(object sender, EventArgs e)
 		{

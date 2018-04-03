@@ -98,7 +98,7 @@ namespace Snake
 				{
 					
 					FoodMngr.AddRandomFoodRed();
-					Player1.AddBodySegments(1);
+					Player1.AddBodySegments(2);
 					score+=2;
 					ScoreTxtBox.Text = score.ToString();
 				}

@@ -40,13 +40,13 @@ namespace Snake
 
         public void ResetGame()
         {
-			String name, display;
+            String name, display;
             if (score != 0) {
             GameTimer.Enabled = false;
             display = "Score : " + score.ToString();
             name = Interaction.InputBox(display, "High Score", "Name", -1, -1);
             String line = name + "          " + score.ToString() + Environment.NewLine;
-			System.IO.File.AppendAllText(@"C:\Project\Snake\Score.txt", line);
+            System.IO.File.AppendAllText(@"C:\Project\Snake\Score.txt", line);
 			GameTimer.Enabled = true;
         }
 			Player1 = new SnakePlayer(this);

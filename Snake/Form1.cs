@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Microsoft.VisualBasic;
+using System.IO;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -39,6 +41,16 @@ namespace Snake
 
 		public void ResetGame()
 		{
+			String name, display;
+			String path = Directory.GetCurrentDirectory();
+			if (score != 0)
+			{
+				GameTimer.Enabled = false;
+				display = "Score : " + score.ToString();
+				name = Interaction.InputBox(display, "High Scores", "Name", -1, -1);
+				String line = name + "          " + score.ToString() + Environment.NewLine;
+				System.IO.File.AppendAllText(path + "/score.txt", line);
+			}
 			Player1 = new SnakePlayer(this);
 			FoodMngr = new FoodManager(GameCanvas.Width, GameCanvas.Height);
 			FoodMngr.AddRandomFood(10);
@@ -157,7 +169,8 @@ namespace Snake
 			MessageBox.Show("Poor Baby");
 			FoodMngr.AddRandomFoodRed(5);
 			GameTimer.Interval = 70;
-			GameCanvas.Invalidate();		}
+			GameCanvas.Invalidate();
+		}
 
 		private void HardBtn_Click(object sender, EventArgs e)
 		{

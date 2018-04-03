@@ -156,7 +156,7 @@ namespace Snake
 			GameTimer.Enabled = false;
 			MessageBox.Show("Poor Baby");
 			FoodMngr.AddRandomFoodRed(5);
-			GameTimer.Interval = 200;
+			GameTimer.Interval = 70;
 			GameCanvas.Invalidate();		}
 
 		private void HardBtn_Click(object sender, EventArgs e)
@@ -166,7 +166,7 @@ namespace Snake
 			MessageBox.Show("YOU CRAZY BRUH?");
 			FoodMngr.AddRandomFood(-10);
 			FoodMngr.AddRandomFoodRed(2);
-			GameTimer.Interval = 100;
+			GameTimer.Interval = 50;
 			GameCanvas.Invalidate();
 		}
 
@@ -177,7 +177,7 @@ namespace Snake
 			MessageBox.Show("RIP Game");
 			FoodMngr.AddRandomFood(20);
 			FoodMngr.AddRandomFoodRed(10);
-			GameTimer.Interval = 50;
+			GameTimer.Interval = 25;
 			GameCanvas.Invalidate();
 		}
 

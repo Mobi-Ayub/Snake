@@ -43,18 +43,25 @@ namespace Snake
 		{
 			String name, display;
 			String path = Directory.GetCurrentDirectory();
+
 			if (score != 0)
 			{
 				GameTimer.Enabled = false;
 				display = "Score : " + score.ToString();
 				name = Interaction.InputBox(display, "High Scores", "Name", -1, -1);
-				String line = name + "          " + score.ToString() + Environment.NewLine;
+				String line = name + "\t\t" + score.ToString() + Environment.NewLine;
 				System.IO.File.AppendAllText(path + "/score.txt", line);
+				string Score = System.IO.File.ReadAllText(path + "/score.txt");
+
+				MessageBox.Show(Score,"Player Score");
 			}
+
 			Player1 = new SnakePlayer(this);
 			FoodMngr = new FoodManager(GameCanvas.Width, GameCanvas.Height);
 			FoodMngr.AddRandomFood(10);
 			score = 0;
+
+
 		}
 
 		public bool PreFilterMessage(ref Message msg)

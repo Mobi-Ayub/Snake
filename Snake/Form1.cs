@@ -78,6 +78,7 @@ namespace Snake
 			Player1.Draw(canvas);
 			FoodMngr.Draw(canvas);
 			FoodMngr.DrawRed(canvas); 
+			FoodMngr.DrawBlack(canvas);
 		}
 
 		private void CheckForCollisions()
@@ -112,6 +113,15 @@ namespace Snake
 					FoodMngr.AddRandomFoodRed();
 					Player1.AddBodySegments(2);
 					score+=2;
+					ScoreTxtBox.Text = score.ToString();
+				}
+
+				if (FoodMngr.IsIntersectingRectWithBlack(rect, true))
+				{
+					
+					FoodMngr.AddRandomFoodBlack();
+					Player1.AddBodySegments(3);
+					score+=3;
 					ScoreTxtBox.Text = score.ToString();
 				}
 			}
@@ -168,6 +178,7 @@ namespace Snake
 			GameTimer.Enabled = false;
 			MessageBox.Show("Poor Baby");
 			FoodMngr.AddRandomFoodRed(5);
+			FoodMngr.AddRandomFoodBlack(5);
 			GameTimer.Interval = 70;
 			GameCanvas.Invalidate();
 		}
@@ -179,6 +190,7 @@ namespace Snake
 			MessageBox.Show("YOU CRAZY BRUH?");
 			FoodMngr.AddRandomFood(-10);
 			FoodMngr.AddRandomFoodRed(2);
+			FoodMngr.AddRandomFoodBlack(2);
 			GameTimer.Interval = 50;
 			GameCanvas.Invalidate();
 		}
@@ -190,6 +202,7 @@ namespace Snake
 			MessageBox.Show("RIP Game");
 			FoodMngr.AddRandomFood(20);
 			FoodMngr.AddRandomFoodRed(10);
+			FoodMngr.AddRandomFoodBlack(10);
 			GameTimer.Interval = 25;
 			GameCanvas.Invalidate();
 		}

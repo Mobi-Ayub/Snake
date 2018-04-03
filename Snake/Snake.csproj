@@ -84,6 +84,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="FoodPelletRed.cs" />
+    <Compile Include="FoodPelletBlack.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

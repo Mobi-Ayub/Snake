@@ -166,7 +166,18 @@ namespace Snake
 			MessageBox.Show("YOU CRAZY BRUH?");
 			FoodMngr.AddRandomFood(-10);
 			FoodMngr.AddRandomFoodRed(2);
-			GameTimer.Interval = 20;
+			GameTimer.Interval = 100;
+			GameCanvas.Invalidate();
+		}
+
+		private void ImpossibleBtn_Click(object sender, EventArgs e)
+		{
+			ResetGame();
+			GameTimer.Enabled = false;
+			MessageBox.Show("RIP Game");
+			FoodMngr.AddRandomFood(20);
+			FoodMngr.AddRandomFoodRed(10);
+			GameTimer.Interval = 50;
 			GameCanvas.Invalidate();
 		}
 

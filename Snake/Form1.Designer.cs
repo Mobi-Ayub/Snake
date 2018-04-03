@@ -37,6 +37,7 @@
             this.DareBtn = new System.Windows.Forms.Button();
 			this.EasyBtn = new System.Windows.Forms.Button();
 			this.HardBtn = new System.Windows.Forms.Button();
+            this.ImpossibleBtn = new System.Windows.Forms.Button();
             this.ScoreTxtBox = new System.Windows.Forms.TextBox();
             this.ScoreLbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.GameCanvas)).BeginInit();
@@ -84,6 +85,14 @@
 			this.HardBtn.Text = "Go Hard";
 			this.HardBtn.UseVisualStyleBackColor = true;
 			this.HardBtn.Click += new System.EventHandler(this.HardBtn_Click);
+			//
+			this.ImpossibleBtn.Location = new System.Drawing.Point(554, 279);
+            this.ImpossibleBtn.Name = "ImpossibleBtn";
+            this.ImpossibleBtn.Size = new System.Drawing.Size(205, 23);
+            this.ImpossibleBtn.TabIndex = 1;
+            this.ImpossibleBtn.Text = "Go Impossible";
+            this.ImpossibleBtn.UseVisualStyleBackColor = true;
+			this.ImpossibleBtn.Click += new System.EventHandler(this.ImpossibleBtn_Click);
             // DareBtn
             // 
             this.DareBtn.Location = new System.Drawing.Point(553, 379);
@@ -124,6 +133,7 @@
             this.Controls.Add(this.Start_Btn);
 			this.Controls.Add(this.EasyBtn);
 			this.Controls.Add(this.HardBtn);
+			this.Controls.Add(this.ImpossibleBtn);
             this.Controls.Add(this.GameCanvas);
             this.Name = "SnakeForm";
             this.Text = "Snake";
@@ -142,6 +152,7 @@
         private System.Windows.Forms.Button DareBtn;
 		private System.Windows.Forms.Button EasyBtn;
 		private System.Windows.Forms.Button HardBtn;
+		private System.Windows.Forms.Button ImpossibleBtn;
         private System.Windows.Forms.TextBox ScoreTxtBox;
         private System.Windows.Forms.Label ScoreLbl;
     }

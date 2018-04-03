@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -165,7 +166,7 @@ namespace Snake
             foreach(BodyPart Part in m_SnakeParts) // Check each snake body part
             {
                 Point PartPos = Part.GetPosition();
-
+				 
                 // Check rectangle intersection with body part
                 if (rect.IntersectsWith(new Rectangle(PartPos.X, PartPos.Y, m_CircleRadius, m_CircleRadius)))
                     return true;
@@ -192,10 +193,18 @@ namespace Snake
         {
             Brush SnakeColor = Brushes.Black;
             List<Rectangle> Rects = GetRects(); // Get the snake body parts, represented as rectangles
-            foreach(Rectangle Part in Rects) // Draw each snake body part
+			//Image img = Image.FromFile("C:\\Users\\ASUS\\Documents\\Swinburne Study\\Degree\\Year2\\Sem 1\\DP1-Tool\\Assignment\\Snake\\Snake\\Images\\Snake.png");
+
+			foreach(Rectangle Part in Rects) // Draw each snake body part
             {
                 canvas.FillEllipse(SnakeColor, Part); // Draw the snake parts as ellipses
             }
+			Brush HeadColor = Brushes.DarkGoldenrod;
+
+			//canvas.DrawImageUnscaledAndClipped(img , Rects[0]);
+			canvas.FillEllipse(HeadColor, Rects[0]);
+			canvas.FillEllipse(HeadColor, Rects[1]);
+
         }
 
         /// <summary>
@@ -221,6 +230,7 @@ namespace Snake
 
                 // Every iteration, add a rectangle to the ongoing list representing the body part
                 Rects.Add(new Rectangle(PartPos.X, PartPos.Y, m_CircleRadius, m_CircleRadius));
+
             }
             return Rects;
         } 

@@ -27,9 +27,11 @@ namespace Snake
 			this.FormClosed += (s, e) => Application.RemoveMessageFilter(this);
 			Player1 = new SnakePlayer(this);
 			FoodMngr = new FoodManager(GameCanvas.Width, GameCanvas.Height);
+			GameTimer.Enabled = false;
 			FoodMngr.AddRandomFood(10);
+			FoodMngr.AddRandomFoodRed(5);
+			GameTimer.Interval = 100;
 			ScoreTxtBox.Text = score.ToString();
-			GameTimer.Interval = 80;
 		}
 
 		public void ToggleTimer()
@@ -56,7 +58,6 @@ namespace Snake
 
 			Player1 = new SnakePlayer(this);
 			FoodMngr = new FoodManager(GameCanvas.Width, GameCanvas.Height);
-			FoodMngr.AddRandomFood(10);
 			score = 0;
 		}
 
@@ -176,9 +177,9 @@ namespace Snake
 			ResetGame();
 			GameTimer.Enabled = false;
 			MessageBox.Show("Poor Baby");
+			FoodMngr.AddRandomFood(10);
 			FoodMngr.AddRandomFoodRed(5);
-			FoodMngr.AddRandomFoodBlack(5);
-			GameTimer.Interval = 70;
+			GameTimer.Interval = 100;
 			GameCanvas.Invalidate();
 		}
 
@@ -187,9 +188,9 @@ namespace Snake
 			ResetGame();
 			GameTimer.Enabled = false;
 			MessageBox.Show("YOU CRAZY BRUH?");
-			FoodMngr.AddRandomFood(-10);
-			FoodMngr.AddRandomFoodRed(2);
-			FoodMngr.AddRandomFoodBlack(2);
+			FoodMngr.AddRandomFood(15);
+			FoodMngr.AddRandomFoodRed(5);
+			FoodMngr.AddRandomFoodBlack(5);
 			GameTimer.Interval = 50;
 			GameCanvas.Invalidate();
 		}

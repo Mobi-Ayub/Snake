@@ -13,6 +13,16 @@ namespace Snake
     {
         private Point Position;
 
+		/// <summary>
+		/// Object constructor
+		/// </summary>
+		/// <param name="X">X coordinate of the part</param>
+		/// <param name="Y">Y coordinate of the part</param>
+		public GamePart(int X, int Y)
+		{
+			Position = new Point(X, Y);
+		}
+
         /// <summary>
         /// Gets the position of the point
         /// </summary>
@@ -28,7 +38,6 @@ namespace Snake
         /// <param name="point">Point to add</param>
         public void AddPosition(Point point)
         {
-   
             Position.X += point.X;
             Position.Y += point.Y;
         }
@@ -39,18 +48,9 @@ namespace Snake
         /// <param name="point">Point to set</param>
         public void SetPosition(Point point)
         {
-    
             Position = point;
         }
 
-        /// <summary>
-        /// Object constructor
-        /// </summary>
-        /// <param name="X">X coordinate of the part</param>
-        /// <param name="Y">Y coordinate of the part</param>
-        public GamePart(int X,int Y)
-        {
-            Position = new Point(X,Y);
-        }
+
     }
 }

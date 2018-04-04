@@ -15,8 +15,6 @@ namespace Snake
 {
 	public partial class SnakeForm : Form, IMessageFilter
 	{
-
-
 		SnakePlayer Player1;
 		FoodManager FoodMngr;
 		Random r = new Random();
@@ -60,8 +58,6 @@ namespace Snake
 			FoodMngr = new FoodManager(GameCanvas.Width, GameCanvas.Height);
 			FoodMngr.AddRandomFood(10);
 			score = 0;
-
-
 		}
 
 		public bool PreFilterMessage(ref Message msg)
@@ -116,7 +112,6 @@ namespace Snake
 
 				if (FoodMngr.IsIntersectingRectWithRed(rect, true))
 				{
-					
 					FoodMngr.AddRandomFoodRed();
 					Player1.AddBodySegments(2);
 					score+=2;
@@ -125,7 +120,6 @@ namespace Snake
 
 				if (FoodMngr.IsIntersectingRectWithBlack(rect, true))
 				{
-					
 					FoodMngr.AddRandomFoodBlack();
 					Player1.AddBodySegments(3);
 					score+=3;
@@ -166,7 +160,6 @@ namespace Snake
 
 		private void Start_Btn_Click(object sender, EventArgs e)
 		{
-			
 			ToggleTimer();
 		}
 
@@ -176,7 +169,6 @@ namespace Snake
 			MessageBox.Show("Have some food :)");
 			FoodMngr.AddRandomFood(20);
 			GameCanvas.Invalidate();
-
 		}
 
 		private void EasyBtn_Click(object sender, EventArgs e)
@@ -213,7 +205,6 @@ namespace Snake
 			GameTimer.Interval = 25;
 			GameCanvas.Invalidate();
 		}
-
 
 	}
 }

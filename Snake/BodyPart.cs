@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace Snake
 {
     /// <summary>
@@ -18,6 +17,16 @@ namespace Snake
             set;
         }
 
+		/// <summary>
+		/// Object constructor that sets direction to none by default
+		/// </summary>
+		/// <param name="X">X coordinate of the body part</param>
+		/// <param name="Y">Y coordinate of the body part</param>
+		public BodyPart(int X, int Y):base(X,Y)
+        {
+			m_Dir = Direction.none;   
+		}
+
         /// <summary>
         /// Object constructor
         /// </summary>
@@ -27,15 +36,6 @@ namespace Snake
         public BodyPart(int X,int Y,Direction Dir) : base(X,Y)
         {
             m_Dir = Dir;
-        }
-        /// <summary>
-        /// Object constructor that sets direction to none by default
-        /// </summary>
-        /// <param name="X">X coordinate of the body part</param>
-        /// <param name="Y">Y coordinate of the body part</param>
-        public BodyPart(int X, int Y):base(X,Y)
-        {
-            m_Dir = Direction.none;
         }
     }
 }

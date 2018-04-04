@@ -18,7 +18,7 @@ namespace Snake
 		private List<FoodPelletBlack> m_FoodPelletsBlack = new List<FoodPelletBlack>();
 		private const int m_CircleRadius = 20; // Determines food pellet size
 		private int m_GameWidth; // Game window size in pixels to ensure the program draws within the screen
-		private int m_GameHeight;
+		private int m_GameHeight; // Game window size in pixels to ensure the program draws within the screen
 
 		/// <summary>
 		/// Object constructor
@@ -48,7 +48,7 @@ namespace Snake
 
 		public void DrawRed(Graphics Canvas)
 		{
-			// Iterate over all food pellets and draw them
+			// Iterate over all food pellets and draw them Red
 			Brush SnakeColor = Brushes.Red;
 			foreach (FoodPelletRed Pellet in m_FoodPelletsRed)
 			{
@@ -59,7 +59,7 @@ namespace Snake
 
 		public void DrawBlack(Graphics Canvas)
 		{
-			// Iterate over all food pellets and draw them
+			// Iterate over all food pellets and draw them Black
 			Brush SnakeColor = Brushes.Black;
 			foreach (FoodPelletBlack Pellet in m_FoodPelletsBlack)
 			{
@@ -83,7 +83,9 @@ namespace Snake
 			m_FoodPellets.Add(new FoodPellet(X, Y)); // Save pellet object
 		}
 
-
+		/// <summary>
+		/// Adds a red food pellet to the game
+		/// </summary>
 		public void AddRandomFoodRed()
 		{
 			int X = r.Next(m_GameWidth - m_CircleRadius);
@@ -95,6 +97,9 @@ namespace Snake
 			m_FoodPelletsRed.Add(new FoodPelletRed(X, Y));
 		}
 
+		/// <summary>
+		// Adds a black food pellet to the game
+		/// </summary>
 		public void AddRandomFoodBlack()
 		{
 			int X = r.Next(m_GameWidth - m_CircleRadius);

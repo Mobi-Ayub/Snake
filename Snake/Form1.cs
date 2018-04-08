@@ -15,6 +15,7 @@ namespace Snake
 {
 	public partial class SnakeForm : Form, IMessageFilter
 	{
+		private int counter = 60;
 		SnakePlayer Player1;
 		FoodManager FoodMngr;
 		Random r = new Random();
@@ -28,9 +29,11 @@ namespace Snake
 			Player1 = new SnakePlayer(this);
 			FoodMngr = new FoodManager(GameCanvas.Width, GameCanvas.Height);
 			GameTimer.Enabled = false;
+			TimerMode.Enabled = false;
 			FoodMngr.AddRandomFood(10);
 			FoodMngr.AddRandomFoodRed(5);
 			GameTimer.Interval = 100;
+			TimerMode.Interval = 5000;
 			GameCanvas.Invalidate();
 			ScoreTxtBox.Text = score.ToString();
 		}
@@ -153,9 +156,32 @@ namespace Snake
 
 		private void GameTimer_Tick(object sender, EventArgs e)
 		{
+			
 			SetPlayerMovement();
 			CheckForCollisions();
 			GameCanvas.Invalidate();
+		}
+
+		private void TimerMode_Tick(object sender, EventArgs e) { 
+			counter--;
+			if (GameTimer.Interval > 20 && counter!=0)
+			{
+                TimerSnake();
+			}
+			else
+				TimerMode.Stop();
+		}
+
+		private void TimerSnake() {
+			
+			if (GameTimer.Interval>25) {
+				GameTimer.Interval = GameTimer.Interval - 10;
+			}
+			if (counter == 58 || counter ==55 || counter==52 || counter==48) {
+				FoodMngr.RemoveRandomFood(2);
+				FoodMngr.RemoveRandomFood(1);
+				FoodMngr.RemoveRandomFoodRed(2);
+			}
 		}
 
 
@@ -163,6 +189,7 @@ namespace Snake
 		private void Start_Btn_Click(object sender, EventArgs e)
 		{
 			ToggleTimer();
+
 		}
 
 		private void DareBtn_Click(object sender, EventArgs e)
@@ -204,6 +231,18 @@ namespace Snake
 			GameTimer.Interval = 25;
 			GameCanvas.Invalidate();
 		}
+
+		private void TimerBtn_Click(object sender, EventArgs e)
+		{
+			ResetGame();
+			GameTimer.Interval = 100;
+			TimerMode.Start();
+			TimerMode.Enabled = true;
+			GameTimer.Enabled = false;
+			FoodMngr.AddRandomFood(15);
+			FoodMngr.AddRandomFoodRed(5);
+			FoodMngr.AddRandomFoodBlack(5);
+			GameCanvas.Invalidate();		}
 
 	}
 }

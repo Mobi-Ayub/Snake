@@ -13,7 +13,7 @@ namespace Snake
 	class FoodManager
 	{
 		private Random r = new Random(); // Used for generating random variables in this class
-		private List<FoodPellet> m_FoodPellets = new List<FoodPellet>(); // Collection of all food pellets actively in the game
+		private List<FoodPellet> m_FoodPellets = new List<FoodPellet>(); // Collection of food pellets actively in the game
 		private List<FoodPelletRed> m_FoodPelletsRed = new List<FoodPelletRed>();
 		private List<FoodPelletBlack> m_FoodPelletsBlack = new List<FoodPelletBlack>();
 		private const int m_CircleRadius = 20; // Determines food pellet size
@@ -193,5 +193,19 @@ namespace Snake
 			}
 			return false;
 		}
+
+		public void RemoveRandomFood(int where)
+		{
+			
+				m_FoodPellets.RemoveAt(where);
+		}
+
+		public void RemoveRandomFoodRed(int where)
+		{
+
+			m_FoodPelletsRed.RemoveAt(where);		}
+
+
+
 	}
 }

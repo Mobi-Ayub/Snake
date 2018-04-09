@@ -45,7 +45,7 @@ namespace Snake
 
 		public void ResetGame()
 		{
-			String name, display;
+			String name, display,filesort, realfile;
 			String path = Directory.GetCurrentDirectory();
 
 			if (score != 0)
@@ -53,11 +53,21 @@ namespace Snake
 				GameTimer.Enabled = false;
 				display = "Score : " + score.ToString();
 				name = Interaction.InputBox(display, "High Scores", "Name", -1, -1);
-				String line = name + "\t\t" + score.ToString() + Environment.NewLine;
-				System.IO.File.AppendAllText(path + "/score.txt", line);
-				string Score = System.IO.File.ReadAllText(path + "/score.txt");
 
-				MessageBox.Show(Score,"Player Score");
+				while (name.Count() > 3)
+					{
+						Interaction.MsgBox("Cannot more than 3", MsgBoxStyle.OkOnly);
+						name = Interaction.InputBox(display, "High Scores", "Name", -1, -1);
+					}
+
+					String line = name + "          " + score.ToString() + Environment.NewLine;
+					System.IO.File.AppendAllText(path + "/score.txt", line);
+					filesort = path + "/score.txt";
+					realfile = path + "/high.txt";
+					var content = File.ReadAllLines(filesort);
+					Array.Sort(content);
+					File.WriteAllLines(realfile, content);
+				
 			}
 
 			Player1 = new SnakePlayer(this);
@@ -242,7 +252,8 @@ namespace Snake
 			FoodMngr.AddRandomFood(15);
 			FoodMngr.AddRandomFoodRed(5);
 			FoodMngr.AddRandomFoodBlack(5);
-			GameCanvas.Invalidate();		}
+			GameCanvas.Invalidate();
+		}
 
 	}
 }

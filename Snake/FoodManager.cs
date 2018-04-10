@@ -16,6 +16,7 @@ namespace Snake
 		private List<FoodPellet> m_FoodPellets = new List<FoodPellet>(); // Collection of food pellets actively in the game
 		private List<FoodPelletRed> m_FoodPelletsRed = new List<FoodPelletRed>();
 		private List<FoodPelletBlack> m_FoodPelletsBlack = new List<FoodPelletBlack>();
+		private List<FoodPelletYellow> m_FoodPelletsYellow = new List<FoodPelletYellow>();
 		private const int m_CircleRadius = 20; // Determines food pellet size
 		private int m_GameWidth; // Game window size in pixels to ensure the program draws within the screen
 		private int m_GameHeight; // Game window size in pixels to ensure the program draws within the screen
@@ -69,6 +70,18 @@ namespace Snake
 			}
 		}
 
+		public void DrawYellow(Graphics Canvas)
+		{
+			// Iterate over all food pellets and draw them Yellow
+			Brush SnakeColor = Brushes.Yellow;
+			foreach (FoodPelletYellow Pellet in m_FoodPelletsYellow)
+			{
+				Point PartPos = Pellet.GetPosition();
+				Canvas.FillEllipse(SnakeColor, new Rectangle(PartPos.X + (m_CircleRadius / 4), PartPos.Y + (m_CircleRadius / 4), m_CircleRadius / 2, m_CircleRadius / 2));
+
+			}
+		}
+
 		/// <summary>
 		/// Adds a food pellet to the game
 		/// </summary>
@@ -111,6 +124,17 @@ namespace Snake
 			m_FoodPelletsBlack.Add(new FoodPelletBlack(X, Y));
 		}
 
+		public void AddRandomFoodYellow()
+		{
+			int X = r.Next(m_GameWidth - m_CircleRadius);
+			int Y = r.Next(m_GameHeight - m_CircleRadius);
+			int ix = (X / m_CircleRadius);
+			int iy = (Y / m_CircleRadius);
+			X = ix * m_CircleRadius;
+			Y = iy * m_CircleRadius;
+			m_FoodPelletsYellow.Add(new FoodPelletYellow(X, Y));
+		}
+
 		/// <summary>
 		/// Override to add food in quantities
 		/// </summary>
@@ -136,6 +160,14 @@ namespace Snake
 			for (int i = 0; i < Amount; i++)
 			{
 				AddRandomFoodBlack();
+			}
+		}
+
+		public void AddRandomFoodYellow(int Amount)
+		{
+			for (int i = 0; i < Amount; i++)
+			{
+				AddRandomFoodYellow();
 			}
 		}
 
@@ -194,6 +226,22 @@ namespace Snake
 			return false;
 		}
 
+		public bool IsIntersectingRectWithYellow(Rectangle rect, bool RemoveFood)
+		{
+			foreach (FoodPelletYellow Pellet in m_FoodPelletsYellow)
+			{
+				Point PartPos = Pellet.GetPosition();
+
+				if (rect.IntersectsWith(new Rectangle(PartPos.X, PartPos.Y, m_CircleRadius, m_CircleRadius)))
+				{
+					if (RemoveFood)
+						m_FoodPelletsYellow.Remove(Pellet);
+					return true;
+				}
+			}
+			return false;
+		}
+
 		public void RemoveRandomFood(int where)
 		{
 			
@@ -205,7 +253,15 @@ namespace Snake
 
 			m_FoodPelletsRed.RemoveAt(where);		}
 
+		public void RemoveRandomFoodBlack(int where)
+		{
+			m_FoodPelletsBlack.RemoveAt(where);
+		}
 
+		public void RemoveRandomFoodYellow(int where)
+		{
+			m_FoodPelletsYellow.RemoveAt(where);
+		}
 
 	}
 }

@@ -97,6 +97,7 @@ namespace Snake
 			FoodMngr.Draw(canvas);
 			FoodMngr.DrawRed(canvas); 
 			FoodMngr.DrawBlack(canvas);
+			FoodMngr.DrawYellow(canvas);
 		}
 
 		private void CheckForCollisions()
@@ -138,6 +139,14 @@ namespace Snake
 					FoodMngr.AddRandomFoodBlack();
 					Player1.AddBodySegments(3);
 					score+=3;
+					ScoreTxtBox.Text = score.ToString();
+				}
+
+				if (FoodMngr.IsIntersectingRectWithYellow(rect, true))
+				{
+					FoodMngr.AddRandomFoodYellow();
+					Player1.RemoveBodySegments(1);
+					score-=1;
 					ScoreTxtBox.Text = score.ToString();
 				}
 			}
@@ -227,6 +236,7 @@ namespace Snake
 			FoodMngr.AddRandomFood(15);
 			FoodMngr.AddRandomFoodRed(5);
 			FoodMngr.AddRandomFoodBlack(5);
+			FoodMngr.AddRandomFoodYellow(5);
 			GameTimer.Interval = 50;
 			GameCanvas.Invalidate();
 		}
@@ -237,7 +247,8 @@ namespace Snake
 			GameTimer.Enabled = false;
 			FoodMngr.AddRandomFood(20);
 			FoodMngr.AddRandomFoodRed(10);
-			FoodMngr.AddRandomFoodBlack(10);
+			FoodMngr.AddRandomFoodBlack(5);
+			FoodMngr.AddRandomFoodYellow(5);
 			GameTimer.Interval = 25;
 			GameCanvas.Invalidate();
 		}
@@ -252,6 +263,7 @@ namespace Snake
 			FoodMngr.AddRandomFood(15);
 			FoodMngr.AddRandomFoodRed(5);
 			FoodMngr.AddRandomFoodBlack(5);
+			FoodMngr.AddRandomFoodYellow(5);
 			GameCanvas.Invalidate();
 		}
 

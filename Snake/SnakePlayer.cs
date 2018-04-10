@@ -30,6 +30,7 @@ namespace Snake
         private const int m_CircleRadius = 20; // Determines body part size
         private Direction m_MoveDirection = Direction.none; // Direction of the head
         private int m_PendingSegments; // Number of body parts in queue to be added to the snake
+		private int m_PendingRSegments; // Number of body parts in queue to be removed from the snake
         private SnakeForm GameForm = null; // Stores the GUI form
 
         /// <summary>
@@ -46,8 +47,9 @@ namespace Snake
             // Need to give an initial direction
             m_MoveDirection = Direction.right;
 
-            // Currently no body parts queued to be added
+            // Currently no body parts queued to be added / removed
             m_PendingSegments = 0;
+			m_PendingRSegments = 0;
             GameForm = Form;
         }
 
@@ -63,6 +65,12 @@ namespace Snake
 				Point LastPos = m_SnakeParts.Last().GetPosition(); // Adds the body part to the tail
 				m_SnakeParts.Add(new BodyPart(LastPos.X, LastPos.Y));
 				m_PendingSegments--;
+			}
+
+			if (m_PendingRSegments > 0)
+			{
+				m_SnakeParts.RemoveAt(m_SnakeParts.Count - 1);
+				m_PendingRSegments--;
 			}
 
 			m_SnakeParts[0].m_Dir = m_MoveDirection; // Set the head direction
@@ -213,6 +221,11 @@ namespace Snake
 		{
 			// Increments m_PendingSegments as it will be processed and the parts added in the next call to MovePlayer()
 			m_PendingSegments += Number;
+		}
+
+		public void RemoveBodySegments(int Number)
+		{
+			m_PendingRSegments += Number;
 		}
 
 		/// <summary>

@@ -45,6 +45,8 @@
 			this.btnChange = new System.Windows.Forms.Button();
             this.ScoreTxtBox = new System.Windows.Forms.TextBox();
             this.ScoreLbl = new System.Windows.Forms.Label();
+			this.txtHighScore = new System.Windows.Forms.TextBox();
+			this.lblHighScore = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.GameCanvas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,7 +95,7 @@
 			//
 			string[] buttonName = new string[] { "Easy", "Hard", "Impossible", "Timer" };
 			DropDown.Items.AddRange(buttonName);
-			this.DropDown.Location = new System.Drawing.Point(977, 150);
+			this.DropDown.Location = new System.Drawing.Point(977, 170);
 			this.DropDown.IntegralHeight = false;
 			this.DropDown.MaxDropDownItems = 5;
 			this.DropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -105,7 +107,7 @@
 			// lblGameMode
 			//
 			this.lblGameMode.AutoSize = true;
-			this.lblGameMode.Location = new System.Drawing.Point(977, 134);
+			this.lblGameMode.Location = new System.Drawing.Point(977, 154);
 			this.lblGameMode.Name = "lblGameMode";
 			this.lblGameMode.Size = new System.Drawing.Size(38, 13);
 			this.lblGameMode.TabIndex = 5;
@@ -113,7 +115,7 @@
 			//
 			// btnChange
 			//
-			this.btnChange.Location = new System.Drawing.Point(977, 179);
+			this.btnChange.Location = new System.Drawing.Point(977, 199);
 			this.btnChange.Name = "btnChange";
 			this.btnChange.Size = new System.Drawing.Size(205, 23);
 			this.btnChange.TabIndex = 1;
@@ -129,7 +131,7 @@
 			}
 			else if (this.DropDown.SelectedText == "Impossible")
 			{
-			this.btnChange.Click += new System.EventHandler(this.ImpossibleBtn_Click);
+				this.btnChange.Click += new System.EventHandler(this.ImpossibleBtn_Click);
 			}
 			else
 				this.btnChange.Click += new System.EventHandler(this.TimerBtn_Click);
@@ -191,6 +193,25 @@
             this.ScoreLbl.Size = new System.Drawing.Size(38, 13);
             this.ScoreLbl.TabIndex = 4;
             this.ScoreLbl.Text = "Score:";
+			//
+			// txtHighScore
+			//
+			this.txtHighScore.Enabled = false;
+			this.txtHighScore.Location = new System.Drawing.Point(1000, 88);
+			this.txtHighScore.Name = "txtHighScore";
+			this.txtHighScore.ReadOnly = true;
+			this.txtHighScore.Size = new System.Drawing.Size(161, 50);
+			this.txtHighScore.Font = new System.Drawing.Font(txtHighScore.Font.FontFamily, 28);
+			this.txtHighScore.TabIndex = 3;
+			//
+			// lblHighScore
+			//
+			this.lblHighScore.AutoSize = true;
+			this.lblHighScore.Location = new System.Drawing.Point(977, 72);
+			this.lblHighScore.Name = "lblHighScore";
+			this.lblHighScore.Size = new System.Drawing.Size(38, 13);
+			this.lblHighScore.TabIndex = 4;
+			this.lblHighScore.Text = "HighScore:";
             // 
             // SnakeForm
             // 
@@ -199,6 +220,8 @@
             this.ClientSize = new System.Drawing.Size(1184, 661);
             this.Controls.Add(this.ScoreLbl);
             this.Controls.Add(this.ScoreTxtBox);
+			this.Controls.Add(this.txtHighScore);
+			this.Controls.Add(this.lblHighScore);
             this.Controls.Add(this.DareBtn);
             this.Controls.Add(this.Start_Btn);
             //this.Controls.Add(this.EasyBtn);
@@ -231,8 +254,8 @@
 		//private System.Windows.Forms.Button ImpossibleBtn;
 		private System.Windows.Forms.ComboBox DropDown;
 		private System.Windows.Forms.Button btnChange;
-		private System.Windows.Forms.TextBox ScoreTxtBox;
-		private System.Windows.Forms.Label ScoreLbl, lblGameMode;
+		private System.Windows.Forms.TextBox ScoreTxtBox, txtHighScore;
+		private System.Windows.Forms.Label ScoreLbl, lblGameMode, lblHighScore;
 	}
 }
 

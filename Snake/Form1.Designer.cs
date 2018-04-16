@@ -201,7 +201,7 @@
 			this.txtHighScore.Name = "txtHighScore";
 			this.txtHighScore.ReadOnly = true;
 			this.txtHighScore.Size = new System.Drawing.Size(161, 50);
-			this.txtHighScore.Font = new System.Drawing.Font(txtHighScore.Font.FontFamily, 28);
+			this.txtHighScore.Font = new System.Drawing.Font(txtHighScore.Font.FontFamily, 24);
 			this.txtHighScore.TabIndex = 3;
 			//
 			// lblHighScore

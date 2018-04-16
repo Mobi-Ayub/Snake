@@ -20,6 +20,7 @@ namespace Snake
 		FoodManager FoodMngr;
 		Random r = new Random();
 		private int score = 0;
+		private string highscore;
 
 		public SnakeForm()
 		{
@@ -36,6 +37,7 @@ namespace Snake
 			TimerMode.Interval = 5000;
 			GameCanvas.Invalidate();
 			ScoreTxtBox.Text = score.ToString();
+			txtHighScore.Text = highscore;
 		}
 
 		public void ToggleTimer()
@@ -60,15 +62,20 @@ namespace Snake
 						name = Interaction.InputBox(display, "High Scores", "Name", -1, -1);
 					}
 
-					String line = name + "          " + score.ToString() + Environment.NewLine;
+					String line = name + "     " + score.ToString() + Environment.NewLine;
 					System.IO.File.AppendAllText(path + "/score.txt", line);
 					filesort = path + "/score.txt";
 					realfile = path + "/high.txt";
 					var content = File.ReadAllLines(filesort);
 					Array.Sort(content);
 					File.WriteAllLines(realfile, content);
-				
+
+				System.IO.StreamReader hscore = new System.IO.StreamReader(realfile);
+				highscore = hscore.ReadLine();
+				txtHighScore.Text = highscore;
+
 			}
+
 
 			Player1 = new SnakePlayer(this);
 			FoodMngr = new FoodManager(GameCanvas.Width, GameCanvas.Height);

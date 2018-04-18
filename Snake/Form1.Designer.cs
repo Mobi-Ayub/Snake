@@ -36,17 +36,13 @@
             this.TimerMode = new System.Windows.Forms.Timer(this.components);
             this.Start_Btn = new System.Windows.Forms.Button();
             this.DareBtn = new System.Windows.Forms.Button();
-            //this.EasyBtn = new System.Windows.Forms.Button();
-            //this.HardBtn = new System.Windows.Forms.Button();
-            //this.ImpossibleBtn = new System.Windows.Forms.Button();
-            //this.TimerBtn = new System.Windows.Forms.Button();
-			this.DropDown = new System.Windows.Forms.ComboBox();
-			this.lblGameMode = new System.Windows.Forms.Label();
-			this.btnChange = new System.Windows.Forms.Button();
+            this.DropDown = new System.Windows.Forms.ComboBox();
+            this.lblGameMode = new System.Windows.Forms.Label();
+            this.btnChange = new System.Windows.Forms.Button();
             this.ScoreTxtBox = new System.Windows.Forms.TextBox();
             this.ScoreLbl = new System.Windows.Forms.Label();
-			this.txtHighScore = new System.Windows.Forms.TextBox();
-			this.lblHighScore = new System.Windows.Forms.Label();
+            this.txtHighScore = new System.Windows.Forms.TextBox();
+            this.lblHighScore = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.GameCanvas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,9 +51,10 @@
             this.GameCanvas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.GameCanvas.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("GameCanvas.BackgroundImage")));
             this.GameCanvas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.GameCanvas.Location = new System.Drawing.Point(4, 3);
+            this.GameCanvas.Location = new System.Drawing.Point(5, 4);
+            this.GameCanvas.Margin = new System.Windows.Forms.Padding(4);
             this.GameCanvas.Name = "GameCanvas";
-            this.GameCanvas.Size = new System.Drawing.Size(950, 643);
+            this.GameCanvas.Size = new System.Drawing.Size(1266, 791);
             this.GameCanvas.TabIndex = 0;
             this.GameCanvas.TabStop = false;
             this.GameCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.GameCanvas_Paint);
@@ -72,9 +69,10 @@
             // 
             // Start_Btn
             // 
-            this.Start_Btn.Location = new System.Drawing.Point(977, 12);
+            this.Start_Btn.Location = new System.Drawing.Point(1303, 15);
+            this.Start_Btn.Margin = new System.Windows.Forms.Padding(4);
             this.Start_Btn.Name = "Start_Btn";
-            this.Start_Btn.Size = new System.Drawing.Size(205, 23);
+            this.Start_Btn.Size = new System.Drawing.Size(246, 28);
             this.Start_Btn.TabIndex = 1;
             this.Start_Btn.Text = "Start/Pause";
             this.Start_Btn.UseVisualStyleBackColor = true;
@@ -82,156 +80,111 @@
             // 
             // DareBtn
             // 
-            this.DareBtn.Location = new System.Drawing.Point(976, 480);
+            this.DareBtn.Location = new System.Drawing.Point(1301, 591);
+            this.DareBtn.Margin = new System.Windows.Forms.Padding(4);
             this.DareBtn.Name = "DareBtn";
-            this.DareBtn.Size = new System.Drawing.Size(206, 23);
+            this.DareBtn.Size = new System.Drawing.Size(246, 28);
             this.DareBtn.TabIndex = 2;
             this.DareBtn.TabStop = false;
             this.DareBtn.Text = "I Dare You To Press Me";
             this.DareBtn.UseVisualStyleBackColor = true;
             this.DareBtn.Click += new System.EventHandler(this.DareBtn_Click);
-			// 
-			//DropDownList
-			//
-			string[] buttonName = new string[] { "Easy", "Hard", "Impossible", "Timer" };
-			DropDown.Items.AddRange(buttonName);
-			this.DropDown.Location = new System.Drawing.Point(977, 170);
-			this.DropDown.IntegralHeight = false;
-			this.DropDown.MaxDropDownItems = 5;
-			this.DropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.DropDown.Name = "cmbGameMode";
-			this.DropDown.Size = new System.Drawing.Size(205, 25);
-			this.DropDown.TabIndex = 0;
-			this.Controls.Add(this.DropDown);
-			//
-			// lblGameMode
-			//
-			this.lblGameMode.AutoSize = true;
-			this.lblGameMode.Location = new System.Drawing.Point(977, 154);
-			this.lblGameMode.Name = "lblGameMode";
-			this.lblGameMode.Size = new System.Drawing.Size(38, 13);
-			this.lblGameMode.TabIndex = 5;
-			this.lblGameMode.Text = "Game Mode:";
-			//
-			// btnChange
-			//
-			this.btnChange.Location = new System.Drawing.Point(977, 199);
-			this.btnChange.Name = "btnChange";
-			this.btnChange.Size = new System.Drawing.Size(205, 23);
-			this.btnChange.TabIndex = 1;
-			this.btnChange.Text = "Change Mode";
-			this.btnChange.UseVisualStyleBackColor = true;
-			if (this.DropDown.SelectedText == "Easy")
-			{
-				this.btnChange.Click += new System.EventHandler(this.EasyBtn_Click);
-			}
-			else if (this.DropDown.SelectedText == "Hard")
-			{
-				this.btnChange.Click += new System.EventHandler(this.HardBtn_Click);
-			}
-			else if (this.DropDown.SelectedText == "Impossible")
-			{
-				this.btnChange.Click += new System.EventHandler(this.ImpossibleBtn_Click);
-			}
-			else
-				this.btnChange.Click += new System.EventHandler(this.TimerBtn_Click);
             // 
-            // EasyBtn
+            // DropDown
             // 
-            //this.EasyBtn.Location = new System.Drawing.Point(980, 83);
-            //this.EasyBtn.Name = "EasyBtn";
-            //this.EasyBtn.Size = new System.Drawing.Size(205, 23);
-            //this.EasyBtn.TabIndex = 1;
-            //this.EasyBtn.Text = "Go Easy";
-            //this.EasyBtn.UseVisualStyleBackColor = true;
-            //this.EasyBtn.Click += new System.EventHandler(this.EasyBtn_Click);
+            this.DropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DropDown.IntegralHeight = false;
+            this.DropDown.Items.AddRange(new object[] {
+            "Easy",
+            "Hard",
+            "Impossible",
+            "Timer"});
+            this.DropDown.Location = new System.Drawing.Point(1303, 209);
+            this.DropDown.Margin = new System.Windows.Forms.Padding(4);
+            this.DropDown.MaxDropDownItems = 5;
+            this.DropDown.Name = "DropDown";
+            this.DropDown.Size = new System.Drawing.Size(245, 24);
+            this.DropDown.TabIndex = 0;
+            this.DropDown.SelectedIndexChanged += new System.EventHandler(this.DropDown_SelectedIndexChanged);
             // 
-            // HardBtn
+            // lblGameMode
             // 
-            //this.HardBtn.Location = new System.Drawing.Point(977, 285);
-            //this.HardBtn.Name = "HardBtn";
-            //this.HardBtn.Size = new System.Drawing.Size(205, 23);
-            //this.HardBtn.TabIndex = 1;
-            //this.HardBtn.Text = "Go Hard";
-            //this.HardBtn.UseVisualStyleBackColor = true;
-            //this.HardBtn.Click += new System.EventHandler(this.HardBtn_Click);
+            this.lblGameMode.AutoSize = true;
+            this.lblGameMode.Location = new System.Drawing.Point(1303, 190);
+            this.lblGameMode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblGameMode.Name = "lblGameMode";
+            this.lblGameMode.Size = new System.Drawing.Size(89, 17);
+            this.lblGameMode.TabIndex = 5;
+            this.lblGameMode.Text = "Game Mode:";
             // 
-            // ImpossibleBtn
+            // btnChange
             // 
-            //this.ImpossibleBtn.Location = new System.Drawing.Point(977, 394);
-            //this.ImpossibleBtn.Name = "ImpossibleBtn";
-            //this.ImpossibleBtn.Size = new System.Drawing.Size(205, 23);
-            //this.ImpossibleBtn.TabIndex = 1;
-            //this.ImpossibleBtn.Text = "Go Impossible";
-            //this.ImpossibleBtn.UseVisualStyleBackColor = true;
-            //this.ImpossibleBtn.Click += new System.EventHandler(this.ImpossibleBtn_Click);
-            // 
-            // TimerBtn
-            // 
-            //this.TimerBtn.Location = new System.Drawing.Point(977, 185);
-            //this.TimerBtn.Name = "TimerBtn";
-            //this.TimerBtn.Size = new System.Drawing.Size(205, 23);
-            //this.TimerBtn.TabIndex = 1;
-            //this.TimerBtn.Text = "Go with Time";
-            //this.TimerBtn.UseVisualStyleBackColor = true;
-            //this.TimerBtn.Click += new System.EventHandler(this.TimerBtn_Click);
+            this.btnChange.Location = new System.Drawing.Point(1303, 245);
+            this.btnChange.Margin = new System.Windows.Forms.Padding(4);
+            this.btnChange.Name = "btnChange";
+            this.btnChange.Size = new System.Drawing.Size(246, 28);
+            this.btnChange.TabIndex = 1;
+            this.btnChange.Text = "Change Mode";
+            this.btnChange.UseVisualStyleBackColor = true;
+            this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
             // 
             // ScoreTxtBox
             // 
             this.ScoreTxtBox.Enabled = false;
-            this.ScoreTxtBox.Location = new System.Drawing.Point(1021, 48);
+            this.ScoreTxtBox.Location = new System.Drawing.Point(1361, 59);
+            this.ScoreTxtBox.Margin = new System.Windows.Forms.Padding(4);
             this.ScoreTxtBox.Name = "ScoreTxtBox";
             this.ScoreTxtBox.ReadOnly = true;
-            this.ScoreTxtBox.Size = new System.Drawing.Size(161, 20);
+            this.ScoreTxtBox.Size = new System.Drawing.Size(186, 22);
             this.ScoreTxtBox.TabIndex = 3;
             // 
             // ScoreLbl
             // 
             this.ScoreLbl.AutoSize = true;
-            this.ScoreLbl.Location = new System.Drawing.Point(977, 51);
+            this.ScoreLbl.Location = new System.Drawing.Point(1303, 63);
+            this.ScoreLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ScoreLbl.Name = "ScoreLbl";
-            this.ScoreLbl.Size = new System.Drawing.Size(38, 13);
+            this.ScoreLbl.Size = new System.Drawing.Size(49, 17);
             this.ScoreLbl.TabIndex = 4;
             this.ScoreLbl.Text = "Score:";
-			//
-			// txtHighScore
-			//
-			this.txtHighScore.Enabled = false;
-			this.txtHighScore.Location = new System.Drawing.Point(1000, 88);
-			this.txtHighScore.Name = "txtHighScore";
-			this.txtHighScore.ReadOnly = true;
-			this.txtHighScore.Size = new System.Drawing.Size(161, 50);
-			this.txtHighScore.Font = new System.Drawing.Font(txtHighScore.Font.FontFamily, 24);
-			this.txtHighScore.TabIndex = 3;
-			//
-			// lblHighScore
-			//
-			this.lblHighScore.AutoSize = true;
-			this.lblHighScore.Location = new System.Drawing.Point(977, 72);
-			this.lblHighScore.Name = "lblHighScore";
-			this.lblHighScore.Size = new System.Drawing.Size(38, 13);
-			this.lblHighScore.TabIndex = 4;
-			this.lblHighScore.Text = "HighScore:";
+            // 
+            // txtHighScore
+            // 
+            this.txtHighScore.Enabled = false;
+            this.txtHighScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
+            this.txtHighScore.Location = new System.Drawing.Point(1333, 108);
+            this.txtHighScore.Margin = new System.Windows.Forms.Padding(4);
+            this.txtHighScore.Name = "txtHighScore";
+            this.txtHighScore.ReadOnly = true;
+            this.txtHighScore.Size = new System.Drawing.Size(186, 53);
+            this.txtHighScore.TabIndex = 3;
+            // 
+            // lblHighScore
+            // 
+            this.lblHighScore.AutoSize = true;
+            this.lblHighScore.Location = new System.Drawing.Point(1303, 89);
+            this.lblHighScore.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblHighScore.Name = "lblHighScore";
+            this.lblHighScore.Size = new System.Drawing.Size(78, 17);
+            this.lblHighScore.TabIndex = 4;
+            this.lblHighScore.Text = "HighScore:";
             // 
             // SnakeForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 661);
+            this.ClientSize = new System.Drawing.Size(1621, 814);
             this.Controls.Add(this.ScoreLbl);
             this.Controls.Add(this.ScoreTxtBox);
-			this.Controls.Add(this.txtHighScore);
-			this.Controls.Add(this.lblHighScore);
+            this.Controls.Add(this.txtHighScore);
+            this.Controls.Add(this.lblHighScore);
             this.Controls.Add(this.DareBtn);
             this.Controls.Add(this.Start_Btn);
-            //this.Controls.Add(this.EasyBtn);
-            //this.Controls.Add(this.HardBtn);
-            //this.Controls.Add(this.ImpossibleBtn);
-            //this.Controls.Add(this.TimerBtn);
-			this.Controls.Add(this.DropDown);
-			this.Controls.Add(this.lblGameMode);
-			this.Controls.Add(this.btnChange);
+            this.Controls.Add(this.DropDown);
+            this.Controls.Add(this.lblGameMode);
+            this.Controls.Add(this.btnChange);
             this.Controls.Add(this.GameCanvas);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SnakeForm";
             this.Text = "Snake";
             ((System.ComponentModel.ISupportInitialize)(this.GameCanvas)).EndInit();

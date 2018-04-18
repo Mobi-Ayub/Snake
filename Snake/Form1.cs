@@ -274,5 +274,27 @@ namespace Snake
 			GameCanvas.Invalidate();
 		}
 
-	}
+        private void DropDown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch(DropDown.SelectedIndex)
+            {
+                case 0:
+                    this.btnChange.Click += new System.EventHandler(this.EasyBtn_Click);
+                    break;
+                case 1:
+                    this.btnChange.Click += new System.EventHandler(this.HardBtn_Click);
+                    break;
+                case 2:
+                    this.btnChange.Click += new System.EventHandler(this.ImpossibleBtn_Click);
+                    break;
+                case 3:
+                    this.btnChange.Click += new System.EventHandler(this.TimerBtn_Click);
+                    break;
+            }
+        }
+
+        private void btnChange_Click(object sender, EventArgs e)
+        {
+        }
+    }
 }

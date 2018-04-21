@@ -34,12 +34,15 @@
             this.GameCanvas = new System.Windows.Forms.PictureBox();
             this.GameTimer = new System.Windows.Forms.Timer(this.components);
             this.TimerMode = new System.Windows.Forms.Timer(this.components);
+            this.TimeCount = new System.Windows.Forms.Timer(this.components);
             this.Start_Btn = new System.Windows.Forms.Button();
             this.DareBtn = new System.Windows.Forms.Button();
             this.DropDown = new System.Windows.Forms.ComboBox();
             this.lblGameMode = new System.Windows.Forms.Label();
+            this.lblTime = new System.Windows.Forms.Label();
             this.btnChange = new System.Windows.Forms.Button();
             this.ScoreTxtBox = new System.Windows.Forms.TextBox();
+			this.txtTime = new System.Windows.Forms.TextBox();
             this.ScoreLbl = new System.Windows.Forms.Label();
             this.txtHighScore = new System.Windows.Forms.TextBox();
             this.lblHighScore = new System.Windows.Forms.Label();
@@ -62,6 +65,10 @@
             // GameTimer
             // 
             this.GameTimer.Tick += new System.EventHandler(this.GameTimer_Tick);
+            // 
+			// TimeCount
+			// 
+          	this.TimeCount.Tick += new System.EventHandler(this.TimeCount_Tick);
             // 
             // TimerMode
             // 
@@ -116,6 +123,26 @@
             this.lblGameMode.Size = new System.Drawing.Size(89, 17);
             this.lblGameMode.TabIndex = 5;
             this.lblGameMode.Text = "Game Mode:";
+            // 
+			// lblTime
+			// 
+			this.lblTime.AutoSize = true;
+            this.lblTime.Location = new System.Drawing.Point(1303, 700);
+            this.lblTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(89, 17);
+            this.lblTime.TabIndex = 5;
+			this.lblTime.Text = "Time (s)";
+            // 
+			// TimeTextBox
+			// 
+			this.txtTime.Enabled = false;
+            this.txtTime.Location = new System.Drawing.Point(1361, 700);
+            this.txtTime.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTime.Name = "TimeTextBox";
+            this.txtTime.ReadOnly = true;
+            this.txtTime.Size = new System.Drawing.Size(186, 22);
+            this.txtTime.TabIndex = 3;
             // 
             // btnChange
             // 
@@ -178,6 +205,8 @@
             this.Controls.Add(this.ScoreTxtBox);
             this.Controls.Add(this.txtHighScore);
             this.Controls.Add(this.lblHighScore);
+			this.Controls.Add(this.txtTime);
+			this.Controls.Add(this.lblTime);
             this.Controls.Add(this.DareBtn);
             this.Controls.Add(this.Start_Btn);
             this.Controls.Add(this.DropDown);
@@ -199,6 +228,7 @@
 		private System.Windows.Forms.PictureBox GameCanvas;
 		private System.Windows.Forms.Timer GameTimer;
 		private System.Windows.Forms.Timer TimerMode;
+		private System.Windows.Forms.Timer TimeCount;
 		private System.Windows.Forms.Button Start_Btn;
 		private System.Windows.Forms.Button DareBtn;
 		//private System.Windows.Forms.Button EasyBtn;
@@ -207,8 +237,8 @@
 		//private System.Windows.Forms.Button ImpossibleBtn;
 		private System.Windows.Forms.ComboBox DropDown;
 		private System.Windows.Forms.Button btnChange;
-		private System.Windows.Forms.TextBox ScoreTxtBox, txtHighScore;
-		private System.Windows.Forms.Label ScoreLbl, lblGameMode, lblHighScore;
+		private System.Windows.Forms.TextBox ScoreTxtBox, txtHighScore,txtTime;
+		private System.Windows.Forms.Label ScoreLbl, lblGameMode, lblHighScore,lblTime;
 	}
 }
 

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace Snake
 {
@@ -58,9 +59,9 @@ namespace Snake
 		/// </summary>
 		public void MovePlayer()
 		{
-			// Adds any pending body parts. Note that this processes one body part at a time;
-			// if m_PendingSegments > 1, it will require more than one frame to process completely.
-			if (m_PendingSegments > 0)
+            // Adds any pending body parts. Note that this processes one body part at a time;
+            // if m_PendingSegments > 1, it will require more than one frame to process completely.
+            if (m_PendingSegments > 0)
 			{
 				Point LastPos = m_SnakeParts.Last().GetPosition(); // Adds the body part to the tail
 				m_SnakeParts.Add(new BodyPart(LastPos.X, LastPos.Y));
@@ -103,7 +104,11 @@ namespace Snake
 					m_SnakeParts[i].m_Dir = m_SnakeParts[i - 1].m_Dir;
 			}
 			if (IsSelfIntersecting()) // Check for collisions with itself
-				OnHitSelf(); // If so, trigger the game-over screen
+            {
+                SoundPlayer srecthit = new SoundPlayer(Snake.Properties.Resources.bite);
+                srecthit.Play();
+                OnHitSelf(); // If so, trigger the game-over screen
+            }
 		}
 
 		/// <summary>
@@ -241,7 +246,6 @@ namespace Snake
 
                 // Every iteration, add a rectangle to the ongoing list representing the body part
                 Rects.Add(new Rectangle(PartPos.X, PartPos.Y, m_CircleRadius, m_CircleRadius));
-
             }
             return Rects;
         }

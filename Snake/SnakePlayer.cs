@@ -164,7 +164,7 @@ namespace Snake
 		public void OnHitSelf()
 		{
 			GameForm.ToggleTimer(); // No timer visible on game-over screen
-			MessageBox.Show("Hit SELF- GAME OVER"); // Display game-over message
+            MessageBox.Show("Hit SELF- GAME OVER"); // Display game-over message
 			GameForm.ResetGame();		}
 
 		/// <summary>
@@ -173,15 +173,17 @@ namespace Snake
 		/// <param name="WhichWall">The direction of the wall that the player hit</param>
 		public void OnHitWall(Direction WhichWall)
 		{
-			GameForm.ToggleTimer(); // No timer visible on game-over screen
-			MessageBox.Show("Hit Wall- GAME OVER"); // Display game-over message
+			GameForm.ToggleTimer(); // No timer visible on game-over screen 
+            MessageBox.Show("Hit Wall- GAME OVER"); // Display game-over message
 			GameForm.ResetGame(); 
 		}
 
 		public void OnHitObstacle()
 		{
 			GameForm.ToggleTimer(); // No timer visible on game-over screen
-			MessageBox.Show("Hit Obstacle- GAME OVER"); // Display game-over message
+            SoundPlayer srecthit = new SoundPlayer(Snake.Properties.Resources.hit);
+            srecthit.Play();
+            MessageBox.Show("Hit Obstacle- GAME OVER"); // Display game-over message
 			GameForm.ResetGame();
 		}
 

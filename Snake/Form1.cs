@@ -42,8 +42,6 @@ namespace Snake
 			GameCanvas.Invalidate();
 			ScoreTxtBox.Text = score.ToString();
 			txtHighScore.Text = highscore;
-            SoundPlayer srectmove = new SoundPlayer(Snake.Properties.Resources.kicksnake);
-            srectmove.PlayLooping();
         }
 
 		public void ToggleTimer()
@@ -285,27 +283,27 @@ namespace Snake
 		{
 			if (Input.IsKeyDown(Keys.A))
 			{
-				Player1.SetDirection(Direction.left);
                 SoundPlayer srectT = new SoundPlayer(Snake.Properties.Resources.turn);
                 srectT.Play();
+                Player1.SetDirection(Direction.left);
             }
 			else if (Input.IsKeyDown(Keys.D))
 			{
-				Player1.SetDirection(Direction.right);
                 SoundPlayer srectT = new SoundPlayer(Snake.Properties.Resources.turn);
                 srectT.Play();
+                Player1.SetDirection(Direction.right);
             }
 			else if (Input.IsKeyDown(Keys.W))
 			{
-				Player1.SetDirection(Direction.up);
                 SoundPlayer srectT = new SoundPlayer(Snake.Properties.Resources.turn);
                 srectT.Play();
+                Player1.SetDirection(Direction.up);
             }
 			else if (Input.IsKeyDown(Keys.S))
 			{
-				Player1.SetDirection(Direction.down);
                 SoundPlayer srectT = new SoundPlayer(Snake.Properties.Resources.turn);
                 srectT.Play();
+                Player1.SetDirection(Direction.down);
             }
 			Player1.MovePlayer();
 		}
@@ -324,7 +322,6 @@ namespace Snake
 				TimeCount.Stop();
         txtTime.Text = time.ToString();
 		}
-
 
 		private void TimerMode_Tick(object sender, EventArgs e) { 
 			counter--;
@@ -348,13 +345,10 @@ namespace Snake
 			}
 		}
 
-
-
 		private void Start_Btn_Click(object sender, EventArgs e)
 		{
 			ToggleTimer();
         }
-
 
 		private void DareBtn_Click(object sender, EventArgs e)
 		{
@@ -395,7 +389,8 @@ namespace Snake
 			FoodMngr.AddRandomFoodRed(10);
 			FoodMngr.AddRandomFoodBlack(5);
 			FoodMngr.AddRandomFoodYellow(5);
-			GameTimer.Interval = 25;
+            FoodMngr.AddRandomObstacleDefault(10);
+            GameTimer.Interval = 25;
 			GameCanvas.Invalidate();
 		}
 

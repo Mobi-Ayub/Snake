@@ -53,42 +53,124 @@ namespace Snake
         }
 
 		public void ResetGame()
-		{
-			time = 0;
-			String name, display,filesort, realfile;
-			String path = Directory.GetCurrentDirectory();
+        {
+            time = 0;
+            String name, display, filesort, realfile, first, score1, real, rs;
+            int s1, hs;
+            int[] array;
+            string temp3, temp4;
+            int sc, t;
+            String path = Directory.GetCurrentDirectory();
 
-			if (score != 0)
-			{
-				GameTimer.Enabled = false;
-				display = "Score : " + score.ToString();
-				name = Interaction.InputBox(display, "High Scores", "Name", -1, -1);
+            if (score != 0)
+            {
+                if (score < 10)
+                {
+                    rs = " " + score.ToString();
+                }
+                else
+                {
+                    rs = score.ToString();
+                }
+                GameTimer.Enabled = false;
+                display = "Score : " + rs;
+                name = Interaction.InputBox(display, "High Scores", "Name", -1, -1);
 
-				while (name.Count() > 3)
-					{
-						Interaction.MsgBox("Cannot more than 3", MsgBoxStyle.OkOnly);
-						name = Interaction.InputBox(display, "High Scores", "Name", -1, -1);
-					}
+                while (name.Count() > 3)
+                {
+                    Interaction.MsgBox("Cannot more than 3", MsgBoxStyle.OkOnly);
+                    name = Interaction.InputBox(display, "High Scores", "Name", -1, -1);
+                }
 
-					String line = name + "     " + score.ToString() + Environment.NewLine;
-					System.IO.File.AppendAllText(path + "/score.txt", line);
-					filesort = path + "/score.txt";
-					realfile = path + "/high.txt";
-					var content = File.ReadAllLines(filesort);
-					Array.Sort(content);
-					File.WriteAllLines(realfile, content);
+                String line = rs + "\t     " + name + Environment.NewLine;
+                System.IO.File.AppendAllText(path + "/score.txt", line);
+                filesort = path + "/score.txt";
+                realfile = path + "/high.txt";
+                var content = File.ReadAllLines(filesort);
+                Array.Sort(content);
+                Array.Reverse(content);
+                File.Delete(filesort);
+                for (int i = 0; i < content.Count(); i++)
+                {
+                    File.AppendAllText(filesort, content[i] + Environment.NewLine);
+                }
 
-				System.IO.StreamReader hscore = new System.IO.StreamReader(realfile);
-				highscore = hscore.ReadLine();
-				txtHighScore.Text = highscore;
+                array = new int[content.Count()];
 
-			}
-			Player1 = new SnakePlayer(this);
-			FoodMngr = new FoodManager(GameCanvas.Width, GameCanvas.Height);
-			score = 0;
-		}
+                for (int i = 0; i < content.Count(); i++)
+                {
+                    temp3 = content[i];
+                    temp4 = String.Concat(temp3[0], temp3[1]);
+                    sc = Convert.ToInt32(temp4);
+                    array[i] = sc;
+                }
 
-		public bool PreFilterMessage(ref Message msg)
+                for (int j = 0; j < array.Length; j++)
+                {
+                    for (int k = 0; k < array.Length - 1; k++)
+                    {
+                        if (array[k] > array[k + 1])
+                        {
+                            t = array[k + 1];
+                            array[k + 1] = array[k];
+                            array[k] = t;
+                        }
+                    }
+                }
+
+
+
+
+
+                first = content[0];
+                score1 = String.Concat(first[0], first[1]);
+                s1 = Convert.ToInt32(score1);
+                hs = s1;
+                real = content[0];
+                for (int i = 0; i < content.Count(); i++)
+                {
+                    string second, score2, temp, temp2;
+                    int s2, s;
+
+                    second = content[i];
+
+                    score2 = String.Concat(second[0], second[1]);
+
+                    s2 = Convert.ToInt32(score2);
+
+                    if (hs < s2)
+                    {
+                        hs = s2;
+                    }
+
+                    temp = content[i];
+                    temp2 = String.Concat(temp[0], temp[1]);
+                    s = Convert.ToInt32(temp2);
+                    if (s == hs)
+                    {
+                        real = content[i];
+                    }
+
+                }
+
+                File.WriteAllText(realfile, String.Empty);
+
+                File.AppendAllText(realfile, real);
+
+
+                System.IO.StreamReader hscore = new System.IO.StreamReader(filesort);
+                highscore = hscore.ReadLine();
+                txtHighScore.Text = highscore;
+
+            }
+
+
+            Player1 = new SnakePlayer(this);
+            FoodMngr = new FoodManager(GameCanvas.Width, GameCanvas.Height);
+            score = 0;
+        }
+
+        public bool PreFilterMessage(ref Message msg)
 		{
 			if (msg.Msg == 0x0101) //KeyUp
 				Input.SetKey((Keys)msg.WParam, false);
@@ -239,7 +321,8 @@ namespace Snake
 			time++;
         if (time == 0)
 				TimeCount.Stop();
-        txtTime.Text = time.ToString();		}
+        txtTime.Text = time.ToString();
+		}
 
 
 		private void TimerMode_Tick(object sender, EventArgs e) { 
@@ -350,6 +433,18 @@ namespace Snake
 
         private void btnChange_Click(object sender, EventArgs e)
         {
+        }
+
+        private void txtHighScore_TextChanged(object sender, EventArgs e)
+        {
+            String path = Directory.GetCurrentDirectory();
+            string realfile = path + "/score.txt";
+            string sprt = Environment.NewLine;
+
+            var hscore = File.ReadAllLines(realfile);
+            string output = string.Join(sprt, hscore);
+            string output2 = "Highscore     Name" + Environment.NewLine + output;
+            txtHighScore.Text = output2;
         }
     }
 }

@@ -57,9 +57,10 @@ namespace Snake
             time = 0;
             String name, display, filesort, realfile, first, score1, real, rs;
             int s1, hs;
-            int[] array;
+            long[] array;
             string temp3, temp4;
-            int sc, t;
+            
+			long sc,t;
             String path = Directory.GetCurrentDirectory();
 
             if (score != 0)
@@ -95,19 +96,19 @@ namespace Snake
                     File.AppendAllText(filesort, content[i] + Environment.NewLine);
                 }
 
-                array = new int[content.Count()];
+                array = new long[content.Count()];
 
                 for (int i = 0; i < content.Count(); i++)
                 {
                     temp3 = content[i];
                     temp4 = String.Concat(temp3[0], temp3[1]);
-                    sc = Convert.ToInt32(temp4);
+					sc = Convert.ToInt64(temp4);
                     array[i] = sc;
                 }
 
-                for (int j = 0; j < array.Length; j++)
+                for (long j = 0; j < array.Length; j++)
                 {
-                    for (int k = 0; k < array.Length - 1; k++)
+                    for (long k = 0; k < array.Length - 1; k++)
                     {
                         if (array[k] > array[k + 1])
                         {

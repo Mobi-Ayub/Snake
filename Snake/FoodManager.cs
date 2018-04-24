@@ -299,7 +299,8 @@ namespace Snake
 		public void RemoveRandomFoodRed(int where)
 		{
 
-			m_FoodPelletsRed.RemoveAt(where);		}
+			m_FoodPelletsRed.RemoveAt(where);
+		}
 
 		public void RemoveRandomFoodBlack(int where)
 		{

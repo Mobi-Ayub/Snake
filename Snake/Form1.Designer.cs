@@ -158,7 +158,8 @@
             // ScoreTxtBox
             // 
             this.ScoreTxtBox.Enabled = false;
-            this.ScoreTxtBox.Location = new System.Drawing.Point(1361, 59);
+			this.ScoreTxtBox.Font = new System.Drawing.Font(ScoreTxtBox.Font.FontFamily, 24);
+            this.ScoreTxtBox.Location = new System.Drawing.Point(1333, 83);
             this.ScoreTxtBox.Margin = new System.Windows.Forms.Padding(4);
             this.ScoreTxtBox.Name = "ScoreTxtBox";
             this.ScoreTxtBox.ReadOnly = true;
@@ -179,7 +180,7 @@
             // 
             this.txtHighScore.Enabled = false;
             this.txtHighScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
-            this.txtHighScore.Location = new System.Drawing.Point(1333, 108);
+            this.txtHighScore.Location = new System.Drawing.Point(1333, 132);
             this.txtHighScore.Margin = new System.Windows.Forms.Padding(4);
             this.txtHighScore.Name = "txtHighScore";
             this.txtHighScore.ReadOnly = true;
@@ -189,7 +190,7 @@
             // lblHighScore
             // 
             this.lblHighScore.AutoSize = true;
-            this.lblHighScore.Location = new System.Drawing.Point(1303, 89);
+            this.lblHighScore.Location = new System.Drawing.Point(1303, 142);
             this.lblHighScore.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblHighScore.Name = "lblHighScore";
             this.lblHighScore.Size = new System.Drawing.Size(78, 17);

@@ -51,8 +51,8 @@
             // 
             // GameCanvas
             // 
-            this.GameCanvas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.GameCanvas.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("GameCanvas.BackgroundImage")));
+            this.GameCanvas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(196)))), ((int)(((byte)(222)))));
+            //this.GameCanvas.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("GameCanvas.BackgroundImage")));
             this.GameCanvas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.GameCanvas.Location = new System.Drawing.Point(5, 4);
             this.GameCanvas.Margin = new System.Windows.Forms.Padding(4);

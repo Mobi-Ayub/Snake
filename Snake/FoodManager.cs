@@ -18,6 +18,7 @@ namespace Snake
 		private List<FoodPelletRed> m_FoodPelletsRed = new List<FoodPelletRed>();
 		private List<FoodPelletBlack> m_FoodPelletsBlack = new List<FoodPelletBlack>();
 		private List<FoodPelletYellow> m_FoodPelletsYellow = new List<FoodPelletYellow>();
+		private List<ObstacleDefault> m_ObstacleDefault = new List<ObstacleDefault>();
 		private const int m_CircleRadius = 20; // Determines food pellet size
 		private int m_GameWidth; // Game window size in pixels to ensure the program draws within the screen
 		private int m_GameHeight; // Game window size in pixels to ensure the program draws within the screen
@@ -83,6 +84,17 @@ namespace Snake
 			}
 		}
 
+		public void DrawObstacle(Graphics Canvas)
+		{
+			// Iterate over all obstacle and draw them gray
+			Brush SnakeColor = Brushes.Gray;
+			foreach (ObstacleDefault obstacle in m_ObstacleDefault)
+			{
+				Point PartPos = obstacle.GetPosition();
+				Canvas.FillRectangle(SnakeColor, new Rectangle(PartPos.X + (m_CircleRadius / 2), PartPos.Y + (m_CircleRadius / 2), m_CircleRadius / 1, m_CircleRadius / 1));
+			}
+		}
+
 		/// <summary>
 		/// Adds a food pellet to the game
 		/// </summary>
@@ -136,6 +148,17 @@ namespace Snake
 			m_FoodPelletsYellow.Add(new FoodPelletYellow(X, Y));
 		}
 
+		public void AddRandomObstacleDefault()
+		{
+			int X = r.Next(m_GameWidth - m_CircleRadius);
+			int Y = r.Next(m_GameHeight - m_CircleRadius);
+			int ix = (X / m_CircleRadius);
+			int iy = (Y / m_CircleRadius);
+			X = ix * m_CircleRadius;
+			Y = iy * m_CircleRadius;
+			m_ObstacleDefault.Add(new ObstacleDefault(X, Y));
+		}
+
 		/// <summary>
 		/// Override to add food in quantities
 		/// </summary>
@@ -169,6 +192,14 @@ namespace Snake
 			for (int i = 0; i < Amount; i++)
 			{
 				AddRandomFoodYellow();
+			}
+		}
+
+		public void AddRandomObstacleDefault(int Amount)
+		{
+			for (int i = 0; i < Amount; i++)
+			{
+				AddRandomObstacleDefault();
 			}
 		}
 
@@ -243,6 +274,22 @@ namespace Snake
 			return false;
 		}
 
+		public bool IsIntersectingRectWithObstacleDefault(Rectangle rect, bool RemoveFood)
+		{
+			foreach (ObstacleDefault obstacle in m_ObstacleDefault)
+			{
+				Point PartPos = obstacle.GetPosition();
+
+				if (rect.IntersectsWith(new Rectangle(PartPos.X, PartPos.Y, m_CircleRadius + 2, m_CircleRadius + 2)))
+				{
+					if (RemoveFood)
+						m_ObstacleDefault.Remove(obstacle);
+					return true;
+				}
+			}
+			return false;
+		}
+
 		public void RemoveRandomFood(int where)
 		{
 			
@@ -262,6 +309,11 @@ namespace Snake
 		public void RemoveRandomFoodYellow(int where)
 		{
 			m_FoodPelletsYellow.RemoveAt(where);
+		}
+
+		public void RemoveRandomObstacleDefault(int where)
+		{
+			m_ObstacleDefault.RemoveAt(where);
 		}
 
 	}

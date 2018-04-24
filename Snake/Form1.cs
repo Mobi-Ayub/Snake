@@ -111,6 +111,7 @@ namespace Snake
 			FoodMngr.DrawRed(canvas); 
 			FoodMngr.DrawBlack(canvas);
 			FoodMngr.DrawYellow(canvas);
+			FoodMngr.DrawObstacle(canvas);
 		}
 
         //Is hitting wall
@@ -186,6 +187,13 @@ namespace Snake
 					ScoreTxtBox.Text = score.ToString();
 					SoundPlayer srectYellow = new SoundPlayer(Snake.Properties.Resources.yellow);
 					srectYellow.Play();
+				}
+
+				if (FoodMngr.IsIntersectingRectWithObstacleDefault(rect, true))
+				{
+					FoodMngr.AddRandomObstacleDefault();
+					Player1.OnHitObstacle();
+					ScoreTxtBox.Text = score.ToString();
 				}
 			}
 		}
@@ -286,10 +294,11 @@ namespace Snake
 		{
 			ResetGame();
 			GameTimer.Enabled = false;
-			FoodMngr.AddRandomFood(15);
+			FoodMngr.AddRandomFood(20);
 			FoodMngr.AddRandomFoodRed(5);
 			FoodMngr.AddRandomFoodBlack(5);
 			FoodMngr.AddRandomFoodYellow(5);
+			FoodMngr.AddRandomObstacleDefault(5);
 			GameTimer.Interval = 50;
 			GameCanvas.Invalidate();
 		}

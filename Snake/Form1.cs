@@ -174,7 +174,7 @@ namespace Snake
 					Player1.AddBodySegments(3);
 					score+=3;
 					ScoreTxtBox.Text = score.ToString();
-					SoundPlayer srectBlack = new SoundPlayer(Snake.Properties.Resources.black);
+					SoundPlayer srectBlack = new SoundPlayer(Snake.Properties.Resources.red);
 					srectBlack.Play();
 				}
 

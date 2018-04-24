@@ -174,6 +174,13 @@ namespace Snake
 			GameForm.ResetGame(); 
 		}
 
+		public void OnHitObstacle()
+		{
+			GameForm.ToggleTimer(); // No timer visible on game-over screen
+			MessageBox.Show("Hit Obstacle- GAME OVER"); // Display game-over message
+			GameForm.ResetGame();
+		}
+
         /// <summary>
         /// Sets the direction of the snake head
         /// </summary>

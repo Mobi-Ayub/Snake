@@ -87,6 +87,7 @@
     <Compile Include="FoodPelletRed.cs" />
     <Compile Include="FoodPelletBlack.cs" />
     <Compile Include="FoodPelletYellow.cs" />
+    <Compile Include="ObstacleDefault.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

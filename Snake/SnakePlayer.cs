@@ -70,7 +70,11 @@ namespace Snake
 
 			if (m_PendingRSegments > 0)
 			{
-				m_SnakeParts.RemoveAt(m_SnakeParts.Count - 1);
+				if (m_SnakeParts.Count >=3)
+				{
+					m_SnakeParts.RemoveAt(m_SnakeParts.Count - 1);
+					m_PendingRSegments--;
+				}
 				m_PendingRSegments--;
 			}
 

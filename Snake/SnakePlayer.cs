@@ -214,7 +214,7 @@ namespace Snake
 		/// <param name="canvas">The graphics object to render on</param>
 		public void Draw(Graphics canvas)
 		{
-			Brush SnakeColor = Brushes.Black;
+			Brush SnakeColor = Brushes.Green;
 			List<Rectangle> Rects = GetRects(); // Get the snake body parts, represented as rectangles
 												//Image img = Image.FromFile("C:\\Users\\ASUS\\Documents\\Swinburne Study\\Degree\\Year2\\Sem 1\\DP1-Tool\\Assignment\\Snake\\Snake\\Images\\Snake.png");
 
@@ -222,7 +222,7 @@ namespace Snake
 			{
 				canvas.FillEllipse(SnakeColor, Part); // Draw the snake parts as ellipses
 			}
-			Brush HeadColor = Brushes.DarkGoldenrod;
+			Brush HeadColor = Brushes.Olive;
 
 			//canvas.DrawImageUnscaledAndClipped(img , Rects[0]);
 			canvas.FillEllipse(HeadColor, Rects[0]);

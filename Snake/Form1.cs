@@ -102,7 +102,7 @@ namespace Snake
                 {
                     temp3 = content[i];
                     temp4 = String.Concat(temp3[0], temp3[1]);
-					sc = Convert.ToInt64(temp4);
+					sc = Int64.Parse(temp4);
                     array[i] = sc;
                 }
 

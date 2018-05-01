@@ -89,6 +89,7 @@
     <Compile Include="FoodPelletYellow.cs" />
     <Compile Include="ObstacleDefault.cs" />
     <Compile Include="SnakePlayerTwo.cs" />
+    <Compile Include="PowerPellet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

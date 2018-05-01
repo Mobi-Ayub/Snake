@@ -23,6 +23,7 @@ namespace Snake
 		Random r = new Random();
 		private int score = 0;
 		private string highscore;
+		private int powerCounter = 0;
 
 		public SnakeForm()
 		{
@@ -193,6 +194,7 @@ namespace Snake
 			FoodMngr.DrawBlack(canvas);
 			FoodMngr.DrawYellow(canvas);
 			FoodMngr.DrawObstacle(canvas);
+			FoodMngr.DrawPower(canvas);
 		}
 
         //Is hitting wall
@@ -234,6 +236,7 @@ namespace Snake
 				{
 					FoodMngr.AddRandomFood();
 					Player1.AddBodySegments(1);
+					powerCounter+=1;
 					score++;
 					ScoreTxtBox.Text = score.ToString();
 					SoundPlayer srect = new SoundPlayer(Snake.Properties.Resources.normal);
@@ -244,6 +247,7 @@ namespace Snake
 				{
 					FoodMngr.AddRandomFoodRed();
 					Player1.AddBodySegments(2);
+					powerCounter+=1;
 					score+=2;
 					ScoreTxtBox.Text = score.ToString();
 					SoundPlayer srectRed = new SoundPlayer(Snake.Properties.Resources.red);
@@ -254,6 +258,7 @@ namespace Snake
 				{
 					FoodMngr.AddRandomFoodBlack();
 					Player1.AddBodySegments(3);
+					powerCounter+=1;
 					score+=3;
 					ScoreTxtBox.Text = score.ToString();
 					SoundPlayer srectBlack = new SoundPlayer(Snake.Properties.Resources.red);
@@ -278,6 +283,20 @@ namespace Snake
 					FoodMngr.AddRandomObstacleDefault();
 					Player1.OnHitObstacle();
 					ScoreTxtBox.Text = score.ToString();
+				}
+
+				if (FoodMngr.IsIntersectingRectWithPower(rect, true))
+				{
+					FoodMngr.AddRandomPower();
+					Player1.OnHitPower();
+					ScoreTxtBox.Text = score.ToString();
+
+				}
+
+				if (powerCounter >= 5)
+				{
+					Player1.OnUnHitPower();
+					powerCounter = 0;
 				}
 			}
 		}
@@ -403,6 +422,7 @@ namespace Snake
 			GameTimer.Enabled = false;
 			FoodMngr.AddRandomFood(10);
 			FoodMngr.AddRandomFoodRed(5);
+			FoodMngr.AddRandomPower(2);
 			GameTimer.Interval = 100;
 			GameCanvas.Invalidate();
 		}
@@ -416,6 +436,7 @@ namespace Snake
 			FoodMngr.AddRandomFoodBlack(5);
 			FoodMngr.AddRandomFoodYellow(5);
 			FoodMngr.AddRandomObstacleDefault(5);
+			FoodMngr.AddRandomPower(2);
 			GameTimer.Interval = 50;
 			GameCanvas.Invalidate();
 		}
@@ -429,6 +450,7 @@ namespace Snake
 			FoodMngr.AddRandomFoodBlack(5);
 			FoodMngr.AddRandomFoodYellow(5);
             FoodMngr.AddRandomObstacleDefault(10);
+			FoodMngr.AddRandomPower(2);
             GameTimer.Interval = 25;
 			GameCanvas.Invalidate();
 		}
@@ -456,6 +478,7 @@ namespace Snake
 			FoodMngr.AddRandomFoodRed(5);
 			FoodMngr.AddRandomFoodBlack(5);
 			FoodMngr.AddRandomFoodYellow(5);
+			FoodMngr.AddRandomPower(2);
 			GameCanvas.Invalidate();
 		}
 
@@ -468,6 +491,7 @@ namespace Snake
 			FoodMngr.AddRandomFoodBlack(5);
 			FoodMngr.AddRandomFoodYellow(5);
             FoodMngr.AddRandomObstacleDefault(10);
+			FoodMngr.AddRandomPower(2);
             GameTimer.Interval = 25;
 			GameCanvas.Invalidate();
 		}

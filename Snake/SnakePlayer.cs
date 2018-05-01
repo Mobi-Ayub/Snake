@@ -32,6 +32,7 @@ namespace Snake
         private Direction m_MoveDirection = Direction.none; // Direction of the head
         private int m_PendingSegments; // Number of body parts in queue to be added to the snake
 		private int m_PendingRSegments; // Number of body parts in queue to be removed from the snake
+		private bool m_powerPellets = false;
         private SnakeForm GameForm = null; // Stores the GUI form
 
         /// <summary>
@@ -187,6 +188,16 @@ namespace Snake
 			GameForm.ResetGame();
 		}
 
+		public void OnHitPower()
+		{
+			m_powerPellets = true;
+		}
+
+		public void OnUnHitPower()
+		{
+			m_powerPellets = false;
+		}
+
         /// <summary>
         /// Sets the direction of the snake head
         /// </summary>
@@ -237,8 +248,11 @@ namespace Snake
 		/// <param name="Number">Number of body parts to add</param>
 		public void AddBodySegments(int Number)
 		{
-			// Increments m_PendingSegments as it will be processed and the parts added in the next call to MovePlayer()
-			m_PendingSegments += Number;
+			if (m_powerPellets == false)
+			{
+				// Increments m_PendingSegments as it will be processed and the parts added in the next call to MovePlayer()
+				m_PendingSegments += Number;
+			}
 		}
 
 		public void RemoveBodySegments(int Number)

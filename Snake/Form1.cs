@@ -308,11 +308,47 @@ namespace Snake
 			Player1.MovePlayer();
 		}
 
+		private void SetPlayerMovement2()
+		{
+			if (Input.IsKeyDown(Keys.A))
+			{
+				SoundPlayer srectT = new SoundPlayer(Snake.Properties.Resources.turn);
+				srectT.Play();
+				Player1.SetDirection(Direction.right);
+			}
+			else if (Input.IsKeyDown(Keys.D))
+			{
+				SoundPlayer srectT = new SoundPlayer(Snake.Properties.Resources.turn);
+				srectT.Play();
+				Player1.SetDirection(Direction.left);
+			}
+			else if (Input.IsKeyDown(Keys.W))
+			{
+				SoundPlayer srectT = new SoundPlayer(Snake.Properties.Resources.turn);
+				srectT.Play();
+				Player1.SetDirection(Direction.down);
+			}
+			else if (Input.IsKeyDown(Keys.S))
+			{
+				SoundPlayer srectT = new SoundPlayer(Snake.Properties.Resources.turn);
+				srectT.Play();
+				Player1.SetDirection(Direction.up);
+			}
+			Player1.MovePlayer();
+		}
+
 		private void GameTimer_Tick(object sender, EventArgs e)
 		{
-			SetPlayerMovement();
+			if (DropDown.Text == "Reverse")
+			{
+                SetPlayerMovement2();
+			}
+			else
+			{
+				SetPlayerMovement();
+			}
 			CheckForCollisions();
-			GameCanvas.Invalidate();
+GameCanvas.Invalidate();
 		}
 
 		private void TimeCount_Tick(object sender, EventArgs e)
@@ -394,6 +430,17 @@ namespace Snake
 			GameCanvas.Invalidate();
 		}
 
+		private void ExtraBtn_Click(object sender, EventArgs e)
+		{
+			ResetGame();
+			GameTimer.Enabled = false;
+			FoodMngr.AddRandomFood(20);
+			FoodMngr.AddRandomFoodRed(10);
+			FoodMngr.AddRandomFoodBlack(5);
+			FoodMngr.AddRandomFoodYellow(5);
+			GameTimer.Interval = 100;
+			GameCanvas.Invalidate();
+		}
 		private void TimerBtn_Click(object sender, EventArgs e)
 		{
 			ResetGame();
@@ -424,6 +471,9 @@ namespace Snake
                 case 3:
                     this.btnChange.Click += new System.EventHandler(this.TimerBtn_Click);
                     break;
+				case 4:
+					this.btnChange.Click += new System.EventHandler(this.ExtraBtn_Click);
+					break;
             }
         }
 

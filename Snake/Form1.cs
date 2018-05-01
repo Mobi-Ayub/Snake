@@ -173,6 +173,16 @@ namespace Snake
             score = 0;
         }
 
+		public void _2PGameReset()
+		{
+			time = 0;
+			MessageBox.Show("Winner!! \n\n Player 1");
+			Player1 = new SnakePlayer(this);
+			Player2 = new SnakePlayerTwo(this);
+			FoodMngr = new FoodManager(GameCanvas.Width, GameCanvas.Height);
+			score = 0;
+		}
+
         public bool PreFilterMessage(ref Message msg)
 		{
 			if (msg.Msg == 0x0101) //KeyUp
@@ -608,7 +618,7 @@ namespace Snake
 
 		private void btn2PMode_Click(object sender, EventArgs e)
 		{
-            ResetGame();
+			_2PGameReset();
 			GameTimer.Enabled = false;
 			FoodMngr.AddRandomFood(20);
 			FoodMngr.AddRandomFoodRed(10);

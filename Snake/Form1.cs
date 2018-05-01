@@ -262,6 +262,9 @@ namespace Snake
 
 				if (FoodMngr.IsIntersectingRectWithYellow(rect, true))
 				{
+					for (int i = time; i < time + 4;i++) {
+						SetPlayerMovement();
+					}
 					FoodMngr.AddRandomFoodYellow();
 					Player1.RemoveBodySegments(1);
 					score-=1;

@@ -32,9 +32,9 @@ namespace Snake
 		public SnakePlayerTwo(SnakeForm Form)
 		{
 			// Add 3 body parts to the snake because the snake begins small
-			m_SnakeParts.Add(new BodyPart(100, 0, Direction.right));
-			m_SnakeParts.Add(new BodyPart(80, 0, Direction.right));
-			m_SnakeParts.Add(new BodyPart(60, 0, Direction.right));
+			m_SnakeParts.Add(new BodyPart(100, 550, Direction.right));
+			m_SnakeParts.Add(new BodyPart(80, 550, Direction.right));
+			m_SnakeParts.Add(new BodyPart(60, 550, Direction.right));
 
 			// Need to give an initial direction
 			m_MoveDirection = Direction.right;
@@ -255,5 +255,11 @@ namespace Snake
 			return Rects;
 		}
 
-	}
+        public void RemoveSnake()
+        {
+            m_SnakeParts.Remove(new BodyPart(100, 550, Direction.right));
+            m_SnakeParts.Remove(new BodyPart(80, 550, Direction.right));
+            m_SnakeParts.Remove(new BodyPart(60, 550, Direction.right));
+        }
+    }
 }

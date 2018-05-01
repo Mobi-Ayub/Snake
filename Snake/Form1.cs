@@ -19,7 +19,8 @@ namespace Snake
 		private int counter = 60;
 		private int time = 0;
 		SnakePlayer Player1;
-		FoodManager FoodMngr;
+        SnakePlayerTwo Player2;
+        FoodManager FoodMngr;
 		Random r = new Random();
 		private int score = 0;
 		private string highscore;
@@ -31,7 +32,8 @@ namespace Snake
 			Application.AddMessageFilter(this);
 			this.FormClosed += (s, e) => Application.RemoveMessageFilter(this);
 			Player1 = new SnakePlayer(this);
-			FoodMngr = new FoodManager(GameCanvas.Width, GameCanvas.Height);
+            Player2 = new SnakePlayerTwo(this);
+            FoodMngr = new FoodManager(GameCanvas.Width, GameCanvas.Height);
 			GameTimer.Enabled = false;
 			TimerMode.Enabled = false;
 			TimeCount.Enabled = false;
@@ -166,6 +168,7 @@ namespace Snake
 
 
             Player1 = new SnakePlayer(this);
+            Player2 = new SnakePlayerTwo(this);
             FoodMngr = new FoodManager(GameCanvas.Width, GameCanvas.Height);
             score = 0;
         }
@@ -189,6 +192,7 @@ namespace Snake
 		{
 			Graphics canvas = e.Graphics;
 			Player1.Draw(canvas);
+            Player2.Draw(canvas);
 			FoodMngr.Draw(canvas);
 			FoodMngr.DrawRed(canvas); 
 			FoodMngr.DrawBlack(canvas);
@@ -330,7 +334,120 @@ namespace Snake
 			Player1.MovePlayer();
 		}
 
-		private void SetPlayerMovement2()
+        //Is hitting wall Second Player
+        private void CheckForCollisionsSecond()
+        {
+            if (Player2.IsIntersectingRect(new Rectangle(-100, 0, 100, GameCanvas.Height)))
+            {
+                SoundPlayer srecthit = new SoundPlayer(Snake.Properties.Resources.hit);
+                srecthit.Play();
+                Player2.OnHitWall(Direction.left);
+            }
+
+            if (Player2.IsIntersectingRect(new Rectangle(0, -100, GameCanvas.Width, 100)))
+            {
+                SoundPlayer srecthit = new SoundPlayer(Snake.Properties.Resources.hit);
+                srecthit.Play();
+                Player2.OnHitWall(Direction.up);
+            }
+
+            if (Player2.IsIntersectingRect(new Rectangle(GameCanvas.Width, 0, 100, GameCanvas.Height)))
+            {
+                SoundPlayer srecthit = new SoundPlayer(Snake.Properties.Resources.hit);
+                srecthit.Play();
+                Player2.OnHitWall(Direction.right);
+            }
+
+            if (Player2.IsIntersectingRect(new Rectangle(0, GameCanvas.Height, GameCanvas.Width, 100)))
+            {
+                SoundPlayer srecthit = new SoundPlayer(Snake.Properties.Resources.hit);
+                srecthit.Play();
+                Player2.OnHitWall(Direction.down);
+            }
+
+            //Is hitting food
+            List<Rectangle> SnakeRects = Player2.GetRects();
+            foreach (Rectangle rect in SnakeRects)
+            {
+                if (FoodMngr.IsIntersectingRect(rect, true))
+                {
+                    FoodMngr.AddRandomFood();
+                    Player2.AddBodySegments(1);
+                    score++;
+                    ScoreTxtBox.Text = score.ToString();
+                    SoundPlayer srect = new SoundPlayer(Snake.Properties.Resources.normal);
+                    srect.Play();
+                }
+
+                if (FoodMngr.IsIntersectingRectWithRed(rect, true))
+                {
+                    FoodMngr.AddRandomFoodRed();
+                    Player2.AddBodySegments(2);
+                    score += 2;
+                    ScoreTxtBox.Text = score.ToString();
+                    SoundPlayer srectRed = new SoundPlayer(Snake.Properties.Resources.red);
+                    srectRed.Play();
+                }
+
+                if (FoodMngr.IsIntersectingRectWithBlack(rect, true))
+                {
+                    FoodMngr.AddRandomFoodBlack();
+                    Player2.AddBodySegments(3);
+                    score += 3;
+                    ScoreTxtBox.Text = score.ToString();
+                    SoundPlayer srectBlack = new SoundPlayer(Snake.Properties.Resources.red);
+                    srectBlack.Play();
+                }
+
+                if (FoodMngr.IsIntersectingRectWithYellow(rect, true))
+                {
+                    FoodMngr.AddRandomFoodYellow();
+                    Player2.RemoveBodySegments(1);
+                    score -= 1;
+                    ScoreTxtBox.Text = score.ToString();
+                    SoundPlayer srectYellow = new SoundPlayer(Snake.Properties.Resources.yellow);
+                    srectYellow.Play();
+                }
+
+                if (FoodMngr.IsIntersectingRectWithObstacleDefault(rect, true))
+                {
+                    FoodMngr.AddRandomObstacleDefault();
+                    Player2.OnHitObstacle();
+                    ScoreTxtBox.Text = score.ToString();
+                }
+            }
+        }
+
+        private void SetPlayerTwoMovement()
+        {
+            if (Input.IsKeyDown(Keys.Left))
+            {
+                SoundPlayer srectT = new SoundPlayer(Snake.Properties.Resources.turn);
+                srectT.Play();
+                Player2.SetDirection(Direction.left);
+            }
+            else if (Input.IsKeyDown(Keys.Right))
+            {
+                SoundPlayer srectT = new SoundPlayer(Snake.Properties.Resources.turn);
+                srectT.Play();
+                Player2.SetDirection(Direction.right);
+            }
+            else if (Input.IsKeyDown(Keys.Up))
+            {
+                SoundPlayer srectT = new SoundPlayer(Snake.Properties.Resources.turn);
+                srectT.Play();
+                Player2.SetDirection(Direction.up);
+            }
+            else if (Input.IsKeyDown(Keys.Down))
+            {
+                SoundPlayer srectT = new SoundPlayer(Snake.Properties.Resources.turn);
+                srectT.Play();
+                Player2.SetDirection(Direction.down);
+            }
+            Player2.MovePlayer();
+        }
+
+        private void SetPlayerMovement2()
 		{
 			if (Input.IsKeyDown(Keys.A))
 			{
@@ -368,8 +485,10 @@ namespace Snake
 			else
 			{
 				SetPlayerMovement();
-			}
+                SetPlayerTwoMovement();
+            }
 			CheckForCollisions();
+            CheckForCollisionsSecond();
 			GameCanvas.Invalidate();
 		}
 
@@ -418,7 +537,8 @@ namespace Snake
 
 		private void EasyBtn_Click(object sender, EventArgs e)
 		{
-			ResetGame();
+            Player2.RemoveSnake();
+            ResetGame();
 			GameTimer.Enabled = false;
 			FoodMngr.AddRandomFood(10);
 			FoodMngr.AddRandomFoodRed(5);
@@ -429,7 +549,8 @@ namespace Snake
 
 		private void HardBtn_Click(object sender, EventArgs e)
 		{
-			ResetGame();
+            Player2.RemoveSnake();
+            ResetGame();
 			GameTimer.Enabled = false;
 			FoodMngr.AddRandomFood(20);
 			FoodMngr.AddRandomFoodRed(5);
@@ -443,7 +564,8 @@ namespace Snake
 
 		private void ImpossibleBtn_Click(object sender, EventArgs e)
 		{
-			ResetGame();
+            Player2.RemoveSnake();
+            ResetGame();
 			GameTimer.Enabled = false;
 			FoodMngr.AddRandomFood(20);
 			FoodMngr.AddRandomFoodRed(10);
@@ -457,7 +579,8 @@ namespace Snake
 
 		private void ExtraBtn_Click(object sender, EventArgs e)
 		{
-			ResetGame();
+            Player2.RemoveSnake();
+            ResetGame();
 			GameTimer.Enabled = false;
 			FoodMngr.AddRandomFood(20);
 			FoodMngr.AddRandomFoodRed(10);
@@ -469,7 +592,8 @@ namespace Snake
 
 		private void TimerBtn_Click(object sender, EventArgs e)
 		{
-			ResetGame();
+            Player2.RemoveSnake();
+            ResetGame();
 			GameTimer.Interval = 100;
 			TimerMode.Start();
 			TimerMode.Enabled = true;

@@ -103,7 +103,8 @@
             "Hard",
             "Impossible",
             "Timer",
-			"Reverse"});
+			"Reverse",
+			"2 Player"});
             this.DropDown.Location = new System.Drawing.Point(977, 142);
             this.DropDown.MaxDropDownItems = 5;
             this.DropDown.Name = "DropDown";

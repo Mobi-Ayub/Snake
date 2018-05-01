@@ -351,7 +351,7 @@ namespace Snake
 				SetPlayerMovement();
 			}
 			CheckForCollisions();
-GameCanvas.Invalidate();
+			GameCanvas.Invalidate();
 		}
 
 		private void TimeCount_Tick(object sender, EventArgs e)
@@ -444,6 +444,7 @@ GameCanvas.Invalidate();
 			GameTimer.Interval = 100;
 			GameCanvas.Invalidate();
 		}
+
 		private void TimerBtn_Click(object sender, EventArgs e)
 		{
 			ResetGame();
@@ -455,6 +456,19 @@ GameCanvas.Invalidate();
 			FoodMngr.AddRandomFoodRed(5);
 			FoodMngr.AddRandomFoodBlack(5);
 			FoodMngr.AddRandomFoodYellow(5);
+			GameCanvas.Invalidate();
+		}
+
+		private void btn2PMode_Click(object sender, EventArgs e)
+		{
+            ResetGame();
+			GameTimer.Enabled = false;
+			FoodMngr.AddRandomFood(20);
+			FoodMngr.AddRandomFoodRed(10);
+			FoodMngr.AddRandomFoodBlack(5);
+			FoodMngr.AddRandomFoodYellow(5);
+            FoodMngr.AddRandomObstacleDefault(10);
+            GameTimer.Interval = 25;
 			GameCanvas.Invalidate();
 		}
 
@@ -476,6 +490,9 @@ GameCanvas.Invalidate();
                     break;
 				case 4:
 					this.btnChange.Click += new System.EventHandler(this.ExtraBtn_Click);
+					break;
+				case 5:
+					this.btnChange.Click += new System.EventHandler(this.btn2PMode_Click);
 					break;
             }
         }
